@@ -82,7 +82,7 @@ loadTrainedFeatures (std::vector<FeatureT::Ptr> &out,
   for (boost::filesystem::directory_iterator it (base_dir); it != boost::filesystem::directory_iterator (); ++it)
   {    
     if (!boost::filesystem::is_directory (it->status ()) &&
-        boost::filesystem::extension (it->path ()) == ".pcd")
+        it->path ().extension() == ".pcd")
     {   
       std::stringstream ss;
       ss << it->path ().string ();

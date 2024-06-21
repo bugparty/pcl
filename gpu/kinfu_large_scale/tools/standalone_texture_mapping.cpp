@@ -433,11 +433,11 @@ main (int argc, char** argv)
   std::string extension (".txt");
   for (boost::filesystem::directory_iterator it (base_dir); it != boost::filesystem::directory_iterator (); ++it)
   {
-    if(boost::filesystem::is_regular_file (it->status ()) && boost::filesystem::extension (it->path ()) == extension)
+    if(boost::filesystem::is_regular_file (it->status ()) && it->path ().extension() == extension)
     {
       pcl::TextureMapping<pcl::PointXYZ>::Camera cam;
       readCamPoseFile(it->path ().string (), cam);
-      cam.texture_file = boost::filesystem::basename (it->path ()) + ".png";
+      cam.texture_file = itr->path ().stem().string() + ".png";
       my_cams.push_back (cam);
     }
   }

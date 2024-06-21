@@ -80,7 +80,8 @@ struct ScanParameters
 vtkPolyData*
 loadDataSet (const char* file_name)
 {
-  std::string extension = boost::filesystem::extension (file_name);
+  boost::filesystem::path path (file_name);
+  std::string extension = path.extension();
   if (extension == ".ply")
   {
     vtkPLYReader* reader = vtkPLYReader::New ();
